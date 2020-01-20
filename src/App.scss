@@ -1,0 +1,296 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.1.2/tailwind.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css');
+
+// Colors
+// All contrast ratios measured against white.
+// Numbers in color name refer to opacity of the base color,
+// e.g. slate-50 is a solid color that is equal to slate-100 at 50% opacity.
+// --------------------------------------------------
+$color-red:          #E32B24; // 4.5:1
+$color-redLighter:   #EF3934; // 3:1
+$color-redDarker:    #B50600; // 7:1
+$color-red-10:       #FFF0ED;
+
+$color-brand:        $color-redLighter;
+$color-brandLighter: $color-redLighter;
+$color-brandDarker:  $color-redDarker;
+$color-brand-10:     rgba($color-redLighter,0.075);
+
+$color-blue:         #007BC2; // 4.5:1
+$color-blueLighter:  #2B9DD6; // 3:1
+$color-blueDarker:   #005E8C; // 7:1
+$color-blue-10:      #E8F5FC;
+
+$color-green:        #14855F; // 4.5:1
+$color-greenLighter: #21A67A; // 3:1
+$color-greenDarker:  #006647; // 7:1
+$color-green-10:     #E6FAF3;
+
+$color-orange:        #CC860C; // 3:1
+$color-orangeLighter: #F0A92E;
+$color-orangeDarker:  $color-orange;
+$color-orange-10:     #FFF4E0;
+
+$color-yellow:        $color-orange;
+$color-yellowLighter: $color-orangeLighter;
+$color-yellowDarker:  $color-orange;
+
+$color-slate-100:    #282C36; // 7:1
+$color-slate-65:     #73767C; // 4.5:1
+$color-slate-50:     #93959A; // 3:1
+$color-slate-25:     #C9CACD;
+$color-slate-10:     #E9E9EA;
+$color-slate-5:      #F4F4F5;
+
+$color-grayDarker:   $color-slate-100;
+$color-grayDark:     $color-slate-65;
+$color-grayMedium:   $color-slate-50;
+$color-grayLight:    $color-slate-25;
+$color-grayLighter:  $color-slate-10;
+$color-grayLightest: $color-slate-5;
+
+$color-white:        #FFFFFF;
+$color-whiteDark:    rgba($color-white,0.75);
+$color-whiteDarker:  rgba($color-white,0.5);
+$color-whiteDarkest: rgba($color-white,0.25);
+
+$color-black:        #000000;
+$color-blackDark:    rgba($color-black,0.75);
+$color-blackDarker:  rgba($color-black,0.5);
+$color-blackDarkest: rgba($color-black,0.25);
+
+
+// Color classes
+// --------------------------------------------------
+.red           {color: $color-red;}
+.redLighter    {color: $color-redLighter;}
+.redDarker     {color: $color-redDarker;}
+
+.brand         {color: $color-brand;}
+
+.blue          {color: $color-blue;}
+.blueLighter   {color: $color-blueLighter;}
+.blueDarker    {color: $color-blueDarker;}
+
+.green         {color: $color-green;}
+.greenLighter  {color: $color-greenLighter;}
+.greenDarker   {color: $color-greenDarker;}
+
+.yellow        {color: $color-yellow;}
+.yellowLighter {color: $color-yellowLighter;}
+.yellowDarker  {color: $color-yellowDarker;}
+
+.orange        {color: $color-orange;}
+.orangeLighter {color: $color-orangeLighter;}
+.orangeDarker  {color: $color-orangeDarker;}
+
+.grayDarker    {color: $color-grayDarker;}
+.grayDark      {color: $color-grayDark;}
+.grayMedium    {color: $color-grayMedium;}
+.grayLight     {color: $color-grayLight;}
+.grayLighter   {color: $color-grayLighter;}
+.grayLightest  {color: $color-grayLightest;}
+
+.white         {color: $color-white;}
+
+.black         {color: $color-black;}
+
+// Color classes for Hover state
+// --------------------------------------------------
+.hover\:red:hover             {color: $color-red;}
+.hover\:bg-red:hover          {background-color: $color-red;}
+.hover\:bg-red-10:hover       {background-color: $color-red-10}
+
+.focus\:border-red:focus,
+input:focus + label.focus\:border-red {border-color: $color-red;}
+
+// Background color classes
+// --------------------------------------------------
+.bg-red             {background-color: $color-red;}
+.bg-redLighter      {background-color: $color-redLighter;}
+.bg-red-10          {background-color: $color-red-10;}
+.bg-redDarker       {background-color: $color-redDarker;}
+
+.bg-brand           {background-color: $color-brand;}
+.bg-brand-10        {background-color: $color-brand-10;}
+.bg-brand-10-solid  {background-color: $color-red-10;}
+
+.bg-blue            {background-color: $color-blue;}
+.bg-blueLighter     {background-color: $color-blueLighter;}
+.bg-blueDarker      {background-color: $color-blueDarker;}
+.bg-blue-10         {background-color: $color-blue-10;}
+.bg-blue-10-solid   {background-color: $color-blue-10;}
+
+.bg-green           {background-color: $color-green;}
+.bg-greenLighter    {background-color: $color-greenLighter;}
+.bg-greenDarker     {background-color: $color-greenDarker;}
+.bg-green-10        {background-color: $color-green-10;}
+.bg-green-10-solid  {background-color: $color-green-10;}
+
+.bg-yellow          {background-color: $color-yellow;}
+.bg-yellowLighter   {background-color: $color-yellowLighter;}
+.bg-yellowDarker    {background-color: $color-yellowDarker;}
+.bg-yellow-10       {background-color: $color-orange-10;}
+
+.bg-orange          {background-color: $color-orange;}
+.bg-orangeLighter   {background-color: $color-orangeLighter;}
+.bg-orangeDarker    {background-color: $color-orangeDarker;}
+.bg-orange-10       {background-color: $color-orange-10;}
+.bg-orange-10-solid {background-color: $color-orange-10;}
+
+.bg-grayDarker      {background-color: $color-grayDarker;}
+.bg-grayDark        {background-color: $color-grayDark;}
+.bg-grayMedium      {background-color: $color-grayMedium;}
+.bg-grayLight       {background-color: $color-grayLight;}
+.bg-grayLighter     {background-color: $color-grayLighter;}
+.bg-grayLightest    {background-color: $color-grayLightest;}
+
+.bg-white           {background-color: $color-white;}
+
+.bg-black           {background-color: $color-black;}
+
+// Color utilities
+// --------------------------------------------------
+.opacity-0 {
+	opacity: 0;
+}
+
+.opacity-50 {
+	opacity: 0.5;
+}
+
+.opacity-65 {
+	opacity: 0.65;
+}
+
+.opacity-100 {
+	opacity: 1;
+}
+
+
+// Buttons
+// ------------------------------------------------
+.btn {
+	display: inline-block;
+	border-radius: 3px;
+	font-size: 12px;
+	font-variant-numeric: lining-nums;
+	padding: 14px 20px 12px;
+	background-color: $color-grayDarker;
+	color: $color-white;
+	text-decoration: none !important;
+	border: none;
+	text-align: center;
+	transition: all 0.2s;
+	cursor: pointer;
+	overflow: unset;
+	line-height: 1;
+	white-space: nowrap;
+
+	&:hover {
+		background-color: rgba($color-grayDarker, 0.9);
+		color: $color-white;
+	}
+
+	&:active {
+		background-color: $color-grayDarker;
+		color: $color-white;
+	}
+
+	&:focus {
+		cursor: pointer;
+		outline: none; /* bad for keyboard navigation */
+		color: $color-white;
+	}
+}
+
+
+.btn--outline {
+	background: transparent;
+	box-shadow: 0 0 0 1px $color-grayLight inset;
+	color: $color-grayDarker;
+
+	&:hover {
+		background: transparent;
+		box-shadow: 0 0 0 1px $color-grayMedium inset;
+		color: $color-grayDarker;
+	}
+
+	&:focus {
+		box-shadow: 0 0 0 1px $color-grayMedium inset;
+		color: $color-grayDarker;
+		cursor: pointer;
+		outline: none; /* bad for keyboard navigation */
+	}
+
+	&:active {
+		background: transparent;
+		box-shadow: 0 0 0 1px $color-grayMedium inset;
+		color: $color-grayDarker;
+	}
+}
+
+.btn--small {
+	padding: 10px 10px 9px;
+	font-size: 12px;
+
+	&.flex-auto {
+		padding: 10px 10px 9px;
+	}
+}
+
+.btn--smaller {
+	padding: 8px;
+	font-size: 11px;
+	min-width: 40px;
+}
+
+.btn--smallest {
+	padding: 6px 16px;
+	font-size: 11px;
+	min-width: 40px;
+}
+
+.btn.disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+.btn--brand {
+	background: $color-brand;
+	color: $color-white;
+	box-shadow: none;
+
+	&:hover {
+		background: $color-brandLighter;
+		color: $color-white;
+	}
+
+	&:focus {
+		cursor: pointer;
+		outline: none; /* bad for keyboard navigation */
+	}
+
+	&:active {
+		background: $color-brandDarker;
+		color: $color-white;
+	}
+}
+
+.search-box {
+	margin-bottom: 20px;
+}
+
+.btn--add__container {
+	text-align: right;
+}
+
+.form-error {
+	margin: 5px 0;
+	font-size: 11px;
+	color: $color-redDarker;
+}
+
+.add-guest-form {
+	margin-top: 15px;
+}
