@@ -4,6 +4,7 @@ import axios from 'axios';
 import { getApiDetails, buildPayload } from './api';
 import AddGuestForm from './add-guest-form';
 import GuestListRow from './guest-list-row';
+import PageList from './page-list';
 
 class GuestList extends React.Component {
 	constructor( props ) {
@@ -24,15 +25,26 @@ class GuestList extends React.Component {
 	}
 
 	componentDidMount() {
+		const urlParams = new URLSearchParams( window.location.search );
+		const urlParamsPage = urlParams.has( 'page' );
+		let queryString = '';
+
+		if ( urlParamsPage ) {
+			queryString = `?page=${ urlParams.get( 'page' ) }`;
+		}
+
 		// Get API details.
 		const apiDetails = getApiDetails();
 		// Get all relevant information.
-		const { url, options } = apiDetails;
+		const { url , options } = apiDetails;
 
-		axios.get( url, options )
+		axios.get( `${ url }${ queryString }`, options )
 			.then( response => {
 				// Set guests to state.
-				this.setState( { guests: response.data.data } );
+				this.setState( {
+					guests: response.data.data,
+					meta:   response.data.meta,
+				} );
 			} );
 	}
 
@@ -89,18 +101,28 @@ class GuestList extends React.Component {
 	}
 
 	render() {
-		const { guests, newVisitorFormOpen, search } = this.state;
+		const {
+			guests,
+			meta,
+			newVisitorFormOpen,
+			search,
+		} = this.state;
+
+		console.log( 111, meta );
+
 		let sortedGuests = [];
 
-		// Search and filter the results.
-		sortedGuests = Array.isArray( guests )
-			&& guests.length > 0
-			&& search
-				? guests.filter( guest => guest.attributes.name && guest.attributes.name.includes( search ) )
-				: guests;
+		if ( Array.isArray( guests ) && sortedGuests.length > 0 ) {
+			// Search and filter the results.
+			sortedGuests = search
+					? guests.filter( guest => guest.attributes.name && guest.attributes.name.includes( search ) )
+					: guests;
 
-		// Sort the guest details by newest first.
-		sortedGuests.sort( ( a, b ) => b.id - a.id );
+			// Sort the guest details by newest first.
+			sortedGuests.sort( ( a, b ) => b.id - a.id );
+		} else {
+			sortedGuests = guests;
+		}
 
 		return (
 			<div className="container mx-auto mt-12 p-8 border min-h-screen max-w-3xl">
@@ -135,6 +157,14 @@ class GuestList extends React.Component {
 
 					{ newVisitorFormOpen && <AddGuestForm onAddComplete={ this.addGuestToState } /> }
 				</div>
+
+				{ typeof meta !== 'undefined'
+					&& <PageList
+						currentPage={ meta.page }
+						itemsPerPage={ meta.pageCount }
+						totalCount={ meta.itemCount }
+					/>
+				}
 
 				<div className="flex-grow h-screen overflow-y-scroll">
 					<div className="mx-auto">

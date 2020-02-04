@@ -2,7 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { makeServer } from './server';
 import * as serviceWorker from './serviceWorker';
+
+if ( process.env.NODE_ENV === 'development' ) {
+	makeServer();
+}
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

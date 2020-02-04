@@ -43,7 +43,10 @@ GuestListRow.defaultProps = {
 };
 
 GuestListRow.propTypes = {
-	id:    PropTypes.number,
+	id:    PropTypes.oneOfType( [
+		PropTypes.number,
+		PropTypes.string,
+	] ),
 	guest: PropTypes.shape( {
     name:     PropTypes.string,
     notes:    PropTypes.string,
